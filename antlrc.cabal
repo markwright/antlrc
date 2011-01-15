@@ -1,6 +1,6 @@
 Name:                antlrc
 Version:             0.0.1
-Synopsis:            Haskell binding to the ANTLR parser generator C runtime library http://www.antlr.org/wiki/display/ANTLR3/ANTLR3+Code+Generation+-+C
+Synopsis:            Haskell binding to the ANTLR parser generator C runtime library.
 Description:         ANTLR is a LL(*) parser generator that supports semantic predicates,
                      syntax predicates and backtracking.  antlrc provides a Haskell interface
                      to the ANTLR C runtime.  ANTLR generates the lexer and/or parser C
@@ -35,6 +35,14 @@ Description:         ANTLR is a LL(*) parser generator that supports semantic pr
                      Examples are provided on github:
                      .
                      <https://github.com/markwright/antlrc-examples>
+                     .
+                     Documentation for the ANTLR C runtime library is at:
+                     .
+                     <http://www.antlr.org/wiki/display/ANTLR3/ANTLR3+Code+Generation+-+C>
+                     .
+                     Documentation for the ANTLR parser generator is at:
+                     .
+                     <http://www.antlr.org/wiki/display/ANTLR3/ANTLR+v3+documentation>
                      .
 Homepage:            https://github.com/markwright/antlrc
 License:             BSD3
