@@ -47,29 +47,23 @@ ANTLR3_COMMON_TOKEN *LT(ANTLR3_INPUT_STREAM *input, int lti);
 -- | Lookahead in the input stream at the token at the specified
 -- | positive offset, where:
 --
--- @
---   LT input 1 
--- @
+-- > LT input 1 
 --
 -- | is the current token.  Or a negative offset may be specified, where: 
 --
--- @
---   LT input (-1) 
--- @
+-- > LT input (-1) 
 --
 -- | is the previous token.
 --
--- @
---   foreign export ccall isUnsignedInt :: Ptr InputStream -> IO Bool
---   isUnsignedInt input =
---     do token1 <- lT input 1 >>= tokenGetType
---        if token1 /= UNSIGNED
---          then return False
---          else 
---          do 
---            token2 <- lT input 2 >>= tokenGetType
---            return ((token2 /= CHAR) && (token2 /= SHORT) && (token2 /= LONG))
--- @
+-- > foreign export ccall isUnsignedInt :: Ptr InputStream -> IO Bool
+-- > isUnsignedInt input =
+-- >   do token1 <- lT input 1 >>= tokenGetType
+-- >      if token1 /= UNSIGNED
+-- >        then return False
+-- >        else 
+-- >        do 
+-- >          token2 <- lT input 2 >>= tokenGetType
+-- >          return ((token2 /= CHAR) && (token2 /= SHORT) && (token2 /= LONG))
 --
 {#fun LT as lT
  { toInputStream `Ptr (InputStream)',
@@ -88,9 +82,7 @@ ANTLR3_STRING *tokenGetAntlrString(ANTLR3_COMMON_TOKEN *token);
 
 -- | Obtain the token name ANTLR string for the specified token.
 --
--- @
---   tokenGetAntlrString token
--- @
+-- > tokenGetAntlrString token
 --
 -- | For identifier tokens, the token string is interesting.  For
 -- | other tokens such as operator tokens, the token string is
@@ -134,19 +126,17 @@ fromAntlrStringToString (AntlrString x) =
 -- | Note: the peekCStringLen function does not say what will happen if the
 -- | c pointer is 0.
 --
--- @
---   foreign export ccall saIntV :: Ptr CommonToken -> IO (StablePtr TermInfo)
---   saIntV token =
---     do
---       -- read the IntV integer value from the token text into n
---       t <- tokenGetText token
---       n <- readIO t
---       -- obtain the source code line and charPosition from the token
---       l <- tokenGetLine token
---       c <- tokenGetCharPositionInLine token
---       -- return the term, which is TmZero, or TmSucc TmZero, or TmSucc (TmSucc (...TmSucc TmZero))
---       newStablePtr (intV (Info l c) n)
--- @
+-- > foreign export ccall saIntV :: Ptr CommonToken -> IO (StablePtr TermInfo)
+-- > saIntV token =
+-- >   do
+-- >     -- read the IntV integer value from the token text into n
+-- >     t <- tokenGetText token
+-- >     n <- readIO t
+-- >     -- obtain the source code line and charPosition from the token
+-- >     l <- tokenGetLine token
+-- >     c <- tokenGetCharPositionInLine token
+-- >     -- return the term, which is TmZero, or TmSucc TmZero, or TmSucc (TmSucc (...TmSucc TmZero))
+-- >     newStablePtr (intV (Info l c) n)
 --
 tokenGetText :: Ptr (CommonToken) -> IO String
 tokenGetText c =
@@ -155,13 +145,11 @@ tokenGetText c =
 
 -- | Obtain the token identifier for the specified token.
 --
--- @
---   foreign export ccall isInt :: Ptr InputStream -> IO Bool
---   isInt input =
---     do 
---       token1 <- lT input 1 >>= tokenGetType
---       return (token1 == INT)
--- @
+-- > foreign export ccall isInt :: Ptr InputStream -> IO Bool
+-- > isInt input =
+-- >   do 
+-- >     token1 <- lT input 1 >>= tokenGetType
+-- >     return (token1 == INT)
 --
 tokenGetType :: (Enum e) => Ptr (CommonToken) -> IO e
 tokenGetType token = {#get ANTLR3_COMMON_TOKEN->type#} token >>= return . cToEnum
@@ -169,32 +157,28 @@ tokenGetType token = {#get ANTLR3_COMMON_TOKEN->type#} token >>= return . cToEnu
 -- | Obtain the character position in the source code line of where the token
 -- | was read, for non-imaginary tokens.
 --
--- @
---   foreign export ccall saTrue :: Ptr CommonToken -> IO (StablePtr TermInfo)
---   saTrue token =
---     do
---       -- obtain the source code line and charPosition from the token
---       l <- tokenGetLine token
---       c <- tokenGetCharPositionInLine token
---       -- return the TmTrue term
---       newStablePtr (TmTrue (Info l c))
--- @
+-- > foreign export ccall saTrue :: Ptr CommonToken -> IO (StablePtr TermInfo)
+-- > saTrue token =
+-- >   do
+-- >     -- obtain the source code line and charPosition from the token
+-- >     l <- tokenGetLine token
+-- >     c <- tokenGetCharPositionInLine token
+-- >     -- return the TmTrue term
+-- >     newStablePtr (TmTrue (Info l c))
 --
 tokenGetCharPositionInLine :: Ptr (CommonToken) -> IO Int
 tokenGetCharPositionInLine token = {#get ANTLR3_COMMON_TOKEN->charPosition#} token >>= return . cIntConv
 
 -- | Obtain the the source code line of where the token was read, for non-imaginary tokens.
 --
--- @
---   foreign export ccall saFalse :: Ptr CommonToken -> IO (StablePtr TermInfo)
---   saFalse token =
---     do
---       -- obtain the source code line and charPosition from the token
---       l <- tokenGetLine token
---       c <- tokenGetCharPositionInLine token
---       -- return the TmFalse term
---       newStablePtr (TmFalse (Info l c))
--- @
+-- > foreign export ccall saFalse :: Ptr CommonToken -> IO (StablePtr TermInfo)
+-- > saFalse token =
+-- >   do
+-- >     -- obtain the source code line and charPosition from the token
+-- >     l <- tokenGetLine token
+-- >     c <- tokenGetCharPositionInLine token
+-- >     -- return the TmFalse term
+-- >     newStablePtr (TmFalse (Info l c))
 --
 tokenGetLine :: Ptr (CommonToken) -> IO Int
 tokenGetLine token = {#get ANTLR3_COMMON_TOKEN->line#} token >>= return . cIntConv
