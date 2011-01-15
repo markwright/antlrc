@@ -7,22 +7,22 @@ Description:         ANTLR is a LL(*) parser generator that supports semantic pr
                      code, which can call Haskell code for things such as: semantic predicates
                      which may look up entries in the symbol table, creating symbol table entries,
                      type checking, creating abstract syntax trees, etc.
-
+                     .
                      The C source code for the lexer and/or parser are generated from the
                      ANTLR grammar file, which by convention has a .g filename extension.
-
+                     .
                      The generated C files can be compiled as C or C++.
-
+                     .
                      The main entry point to the program can be written in C or C++, which
                      calls the generated parser and lexer.  The parser can make calls to
                      Haskell to build the AST and symbol table, and to implement
                      dis-ambiguating semantic predicates if necessary (for context sensitive
                      languages).
-
+                     .
                      The ANTLR parser generator is written in Java.  It is necessary to use
                      the same ANTLR parser generator version as the ANTLR C runtime version.
                      antlrc is tested with ANTLR 3.2 and libantlr3c 3.2.
-
+                     .
                      In addition to creating the GrammarLexer.c and GrammarParser.c files,
                      the antlr parser generator creates a Grammar.tokens file which contains
                      a list of lexer token identifier numbers and any associated name that is
@@ -31,11 +31,11 @@ Description:         ANTLR is a LL(*) parser generator that supports semantic pr
                      a GrammarTokens.h C/C++ header file containing an enum with enum members for
                      those tokens that have user specified names.  This enum is then processed by
                      c2hs to create a Haskell enum for the token identifiers.
-
+                     .
                      Examples are provided on github:
-
-                     https://github.com/markwright/antlrc-examples
-
+                     .
+                     <https://github.com/markwright/antlrc-examples>
+                     .
 Homepage:            https://github.com/markwright/antlrc
 License:             BSD3
 License-file:        LICENSE

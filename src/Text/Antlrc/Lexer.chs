@@ -114,7 +114,7 @@ tokenGetTextMaybe c =
 
 -- | Convert from an ANTLR string to a String.
 --   Note: the peekCStringLen function does not say what will happen if the
---   c pointer is 0.
+--   C pointer is 0.
 fromAntlrStringToString :: AntlrString -> IO String
 fromAntlrStringToString (AntlrString x) = 
   {#get ANTLR3_STRING->chars#} x >>= \c ->
@@ -124,7 +124,7 @@ fromAntlrStringToString (AntlrString x) =
 
 -- | Obtain the token String for the specified token.
 --   Note: the peekCStringLen function does not say what will happen if the
---   c pointer is 0.
+--   C pointer is 0.
 --
 -- > foreign export ccall saIntV :: Ptr CommonToken -> IO (StablePtr TermInfo)
 -- > saIntV token =
