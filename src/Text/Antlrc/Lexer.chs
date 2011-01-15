@@ -46,9 +46,9 @@ ANTLR3_COMMON_TOKEN *LT(ANTLR3_INPUT_STREAM *input, int lti);
 
 -- | Lookahead in the input stream at the token at the specified
 -- | positive offset, where:L 
--- | >>> LT inputStream 1 
+-- >>> LT inputStream 1 
 -- | is the current token, or negative offset, where: 
--- | >>> LT inputstream -1 
+-- >>> LT inputstream -1 
 -- | is the previous token.
 {#fun LT as lT
  { toInputStream `Ptr (InputStream)',
@@ -66,7 +66,7 @@ ANTLR3_STRING *tokenGetAntlrString(ANTLR3_COMMON_TOKEN *token);
 #endc
 
 -- | Obtain the token name ANTLR string for the specified token.
--- | >>> tokenGetAntlrString token
+-- >>> tokenGetAntlrString token
 -- | For identifier tokens, the token string is interesting.  For
 -- | other tokens such as operator tokens, the token string is
 -- | uninteresting, and may not be present, the token identifier enum 
@@ -86,7 +86,7 @@ fromAntlrStringToMaybeString (AntlrString x) =
     return (Just s)
 
 -- | Obtain the token Maybe String for the specified token.
--- | >>> tokenGetTextMaybe token
+-- >>> tokenGetTextMaybe token
 -- | For identifier tokens, the token string is interesting.  For
 -- | other tokens such as operator tokens, the token string is
 -- | uninteresting, and may not be present, the token identifier enum 
@@ -107,7 +107,7 @@ fromAntlrStringToString (AntlrString x) =
   return s
 
 -- | Obtain the token String for the specified token.
--- | >>> tokenGetText token
+-- >>> tokenGetText token
 -- | Note: the peekCStringLen function does not say what will happen if the
 -- | c pointer is 0.
 tokenGetText :: Ptr (CommonToken) -> IO String
@@ -116,17 +116,17 @@ tokenGetText c =
   fromAntlrStringToString (AntlrString s)
 
 -- | Obtain the token identifier for the specified token.
--- | >>> tokenGetType token
+-- >>> tokenGetType token
 tokenGetType :: (Enum e) => Ptr (CommonToken) -> IO e
 tokenGetType token = {#get ANTLR3_COMMON_TOKEN->type#} token >>= return . cToEnum
 
 -- | Obtain the character position in the source code line of where the token
 -- | was read, for non-imaginary tokens.
--- | >>> tokenGetCharPositionInLine token
+-- >>> tokenGetCharPositionInLine token
 tokenGetCharPositionInLine :: Ptr (CommonToken) -> IO Int
 tokenGetCharPositionInLine token = {#get ANTLR3_COMMON_TOKEN->charPosition#} token >>= return . cIntConv
 
 -- | Obtain the the source code line of where the token was read, for non-imaginary tokens.
--- | >>> tokenGetLine token
+-- >>> tokenGetLine token
 tokenGetLine :: Ptr (CommonToken) -> IO Int
 tokenGetLine token = {#get ANTLR3_COMMON_TOKEN->line#} token >>= return . cIntConv

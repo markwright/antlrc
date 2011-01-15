@@ -46,11 +46,12 @@ Copyright:           Copyright (c) Mark Wright 2010-2011. All rights reserved.
 Category:            Parsing
 Build-type:          Simple
 Extra-source-files:  README
-
 Cabal-version:       >= 1.8.0.4
 build-depends:       base >= 3 && <5,
                      c2hs >= 0.16
-
+source-repository    head
+  type:              git
+  location:          git://github.com/markwright/antlrc.git
 
 Library
   Build-tools:       c2hs >= 0.16
