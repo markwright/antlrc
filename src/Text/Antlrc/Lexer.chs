@@ -45,15 +45,15 @@ ANTLR3_COMMON_TOKEN *LT(ANTLR3_INPUT_STREAM *input, int lti);
 #endc
 
 -- | Lookahead in the input stream at the token at the specified
--- | positive offset, where:
+--   positive offset, where:
 --
 -- > LT input 1 
 --
--- | is the current token.  Or a negative offset may be specified, where: 
+--   is the current token.  Or a negative offset may be specified, where: 
 --
 -- > LT input (-1) 
 --
--- | is the previous token.
+--   is the previous token.
 --
 -- > foreign export ccall isUnsignedInt :: Ptr InputStream -> IO Bool
 -- > isUnsignedInt input =
@@ -84,10 +84,10 @@ ANTLR3_STRING *tokenGetAntlrString(ANTLR3_COMMON_TOKEN *token);
 --
 -- > tokenGetAntlrString token
 --
--- | For identifier tokens, the token string is interesting.  For
--- | other tokens such as operator tokens, the token string is
--- | uninteresting, and may not be present, the token identifier enum 
--- | should be used instead.
+--   For identifier tokens, the token string is interesting.  For
+--   other tokens such as operator tokens, the token string is
+--   uninteresting, and may not be present, the token identifier enum 
+--   should be used instead.
 {#fun tokenGetAntlrString
  { toCommonToken `Ptr (CommonToken)' } -> `Ptr (AntlrString)' fromAntlrString#}
 
@@ -103,18 +103,18 @@ fromAntlrStringToMaybeString (AntlrString x) =
     return (Just s)
 
 -- | Obtain the token Maybe String for the specified token.
--- | For identifier tokens, the token string is interesting.  For
--- | other tokens such as operator tokens, the token string is
--- | uninteresting, and may not be present, the token identifier enum 
--- | should be used instead.
+--   For identifier tokens, the token string is interesting.  For
+--   other tokens such as operator tokens, the token string is
+--   uninteresting, and may not be present, the token identifier enum 
+--   should be used instead.
 tokenGetTextMaybe :: Ptr (CommonToken) -> IO (Maybe String)
 tokenGetTextMaybe c =
   tokenGetAntlrString c >>= \s ->
   fromAntlrStringToMaybeString (AntlrString s)
 
 -- | Convert from an ANTLR string to a String.
--- | Note: the peekCStringLen function does not say what will happen if the
--- | c pointer is 0.
+--   Note: the peekCStringLen function does not say what will happen if the
+--   c pointer is 0.
 fromAntlrStringToString :: AntlrString -> IO String
 fromAntlrStringToString (AntlrString x) = 
   {#get ANTLR3_STRING->chars#} x >>= \c ->
@@ -123,8 +123,8 @@ fromAntlrStringToString (AntlrString x) =
   return s
 
 -- | Obtain the token String for the specified token.
--- | Note: the peekCStringLen function does not say what will happen if the
--- | c pointer is 0.
+--   Note: the peekCStringLen function does not say what will happen if the
+--   c pointer is 0.
 --
 -- > foreign export ccall saIntV :: Ptr CommonToken -> IO (StablePtr TermInfo)
 -- > saIntV token =
@@ -155,7 +155,7 @@ tokenGetType :: (Enum e) => Ptr (CommonToken) -> IO e
 tokenGetType token = {#get ANTLR3_COMMON_TOKEN->type#} token >>= return . cToEnum
 
 -- | Obtain the character position in the source code line of where the token
--- | was read, for non-imaginary tokens.
+--   was read, for non-imaginary tokens.
 --
 -- > foreign export ccall saTrue :: Ptr CommonToken -> IO (StablePtr TermInfo)
 -- > saTrue token =
