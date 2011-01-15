@@ -1,0 +1,16 @@
+# Ignore object files
+*.o
+# Ignore static archive libraries
+*.a
+# Ignore shared libraries
+*.so*
+# Ignore emacs backup files
+*~
+# Ignore Java bytecode files
+*.class
+# Ignore Java archive files
+*.jar
+# Ignore nohup files
+nohup.out
+# Ignore the dist directory that is created by runghc ./Setup.hs build
+dist
