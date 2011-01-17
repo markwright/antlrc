@@ -13,13 +13,17 @@ main = defaultMainWithHooks $ simpleUserHooks
     { postCopy = postCopyChi,
       postInst = postInstChi
     }
+
+getLibDir :: PackageDescription -> LocalBuildInfo -> String
+getLibDir pd lbi = libdir (absoluteInstallDirs pd lbi NoCopyDest)
+
+copyChiFiles :: String -> LocalBuildInfo -> IO ()
+copyChiFiles destLibDir lbi =
+  installOrdinaryFiles deafening destLibDir [(buildDir lbi, "Text/Antlrc/Lexer.chi")]
     
 postCopyChi :: Args -> CopyFlags -> PackageDescription -> LocalBuildInfo -> IO ()
-postCopyChi _ _ = copyChiFiles
+postCopyChi args cflags pd lbi =
+  copyChiFiles ((\(CopyTo copyDest) -> copyDest) (fromFlag (copyDest cflags)) ++ tail (getLibDir pd lbi)) lbi
 
 postInstChi :: Args -> InstallFlags -> PackageDescription -> LocalBuildInfo -> IO ()
-postInstChi _ _ = copyChiFiles
-
-copyChiFiles :: PackageDescription -> LocalBuildInfo -> IO ()
-copyChiFiles pd lbi =
-  installOrdinaryFiles deafening (libdir (absoluteInstallDirs pd lbi NoCopyDest)) [(buildDir lbi, "Text/Antlrc/Lexer.chi")]
+postInstChi _ iflags pd lbi = copyChiFiles (getLibDir pd lbi) lbi
