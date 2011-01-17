@@ -73,7 +73,7 @@ Library
                      Text.Antlrc.Lexer
   Exposed:           True
   c-sources:         cbits/lexerc.c
-  
+
 Executable           antlrcmkenums
   hs-source-dirs:    utils/antlrcmkenums
   main-is:           Main.hs
