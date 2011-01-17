@@ -1,4 +1,5 @@
--- Try to workaround http://hackage.haskell.org/trac/hackage/ticket/48
+-- Workaround around http://hackage.haskell.org/trac/hackage/ticket/48
+-- 2. The .chi files need to be installed
 
 import Distribution.Simple
 import Distribution.Simple.Setup
@@ -15,7 +16,7 @@ main = defaultMainWithHooks $ simpleUserHooks
     
 postCopyChi :: Args -> CopyFlags -> PackageDescription -> LocalBuildInfo -> IO ()
 postCopyChi args cflags pd lbi =
-  copyFiles deafening (fromFlag (copyDistPref cflags)) [(buildDir lbi, "Lexer.chi")]
+  copyFiles deafening (fromFlag (copyDistPref cflags)) [((buildDir lbi) ++ "/Text/Antlrc/", "Lexer.chi")]  
 
 postInstChi :: Args -> InstallFlags -> PackageDescription -> LocalBuildInfo -> IO ()
 postInstChi args iflags pd lbi = do
