@@ -22,7 +22,7 @@ copyChiFiles destLibDir lbi =
   installOrdinaryFiles deafening destLibDir [(buildDir lbi, "Text/Antlrc/Lexer.chi")]
     
 postCopyChi :: Args -> CopyFlags -> PackageDescription -> LocalBuildInfo -> IO ()
-postCopyChi args cflags pd lbi =
+postCopyChi _ cflags pd lbi =
   copyChiFiles ((\(CopyTo copyDest) -> copyDest) (fromFlag (copyDest cflags)) ++ tail (getLibDir pd lbi)) lbi
 
 postInstChi :: Args -> InstallFlags -> PackageDescription -> LocalBuildInfo -> IO ()
