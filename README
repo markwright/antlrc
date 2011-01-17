@@ -37,6 +37,14 @@ Examples are provided on github:
 
 https://github.com/markwright/antlrc-examples
 
+Documentation for the ANTLR C runtime library is at:
+
+http://www.antlr.org/wiki/display/ANTLR3/ANTLR3+Code+Generation+-+C
+
+Documentation for the ANTLR parser generator is at:
+
+http://www.antlr.org/wiki/display/ANTLR3/ANTLR+v3+documentation
+
 ANTLR C runtime library dependency:
 -----------------------------------
 

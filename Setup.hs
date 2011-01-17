@@ -26,4 +26,4 @@ postCopyChi _ cflags pd lbi =
   copyChiFiles ((\(CopyTo copyDest) -> copyDest) (fromFlag (copyDest cflags)) ++ tail (getLibDir pd lbi)) lbi
 
 postInstChi :: Args -> InstallFlags -> PackageDescription -> LocalBuildInfo -> IO ()
-postInstChi _ iflags pd lbi = copyChiFiles (getLibDir pd lbi) lbi
+postInstChi _ _ pd lbi = copyChiFiles (getLibDir pd lbi) lbi
