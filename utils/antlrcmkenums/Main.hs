@@ -33,7 +33,7 @@ tokenLine (n, b) =
 
 tokenLines :: Handle -> Int -> [B8.ByteString] -> IO Int
 tokenLines h acc bytes =
-  let (n, tl) = foldl sumLines (acc, B8.empty) (zip [acc..] bytes)
+  let (n, tl) = L.foldl' sumLines (acc, B8.empty) (zip [acc..] bytes)
       sumLines :: (Int, B8.ByteString) -> (Int, B8.ByteString) -> (Int, B8.ByteString)
       sumLines (m, s) (n, t) =
         (x, u)
