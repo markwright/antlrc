@@ -1,5 +1,5 @@
 Name:                antlrc
-Version:             0.0.1
+Version:             0.0.2
 Synopsis:            Haskell binding to the ANTLR parser generator C runtime library.
 Description:         ANTLR is a LL(*) parser generator that supports semantic predicates,
                      syntax predicates and backtracking.  antlrc provides a Haskell interface
