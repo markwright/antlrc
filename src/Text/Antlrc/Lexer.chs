@@ -9,7 +9,6 @@ module Text.Antlrc.Lexer where
 import C2HS
 import Foreign.C.Types
 import Foreign.Storable
-import Ptr
 import Foreign.Ptr
 import System.IO.Unsafe
 import Foreign.C
@@ -94,7 +93,7 @@ ANTLR3_STRING *tokenGetAntlrString(ANTLR3_COMMON_TOKEN *token);
 -- | Convert an ANTLR string to a Maybe String. 
 fromAntlrStringToMaybeString :: AntlrString -> IO (Maybe String)
 fromAntlrStringToMaybeString (AntlrString x) = 
-  if x == Ptr.nullPtr
+  if x == nullPtr
   then return Nothing
   else 
     {#get ANTLR3_STRING->chars#} x >>= \c ->
